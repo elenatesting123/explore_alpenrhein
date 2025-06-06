@@ -7,7 +7,7 @@ import xarray as xr
 import pandas as pd
 import matplotlib.pyplot as plt
 # from utils import update_data_obs_nonetcdf,fetch_pred
-from config_alpenrhein import measurements
+# from config_alpenrhein import measurements
 import glob
 import json
 from datetime import timedelta,datetime,date
@@ -232,7 +232,17 @@ def update_data():
         st.session_state['obs'] = update_data_obs_nonetcdf(measurements,date_end=now_,date_start=now_-timedelta(hours=5*24),ds=None)
     st.success(f"Data updated until {now_}")
 
-
+measurements = [
+    {
+        "full_name_location": ["Rhein - Domat/Ems","Plessur - Chur","Rhein - Lustenau","Albula - Tiefencastel","Rhein - Bangs","Julia - Tiefencastel","Rhein - Wartau","Werdenb.Binnenkanal - Salez","Vorderrhein - Ilanz","Liechtenst. Binnenkan - Ruggell","Hinterrhein - Hinterrhein","Ill - Gisingen","Rhein - Maienfeld","Glenner - Castrisch","Landquart - Felsenbach","Rhein - Diepoldsau,Rietbrücke","Tamina - Bad Ragaz","Frutz - Sulz","Hinterrhein - Fürstenau"],
+        "name_locations": ['B2602', 'B2185', 'VORARLBERG-200196', 'B2141', 'VORARLBERG-200014', 'B2418', 'SG-3304', 'B2187', 'B2033', 'B2410', 'B2631', 'VORARLBERG-200147', 'GR-4487', 'B2498', 'B2150', 'B2473', 'SG-3601', 'VORARLBERG-200642', 'B2387'],
+        "id_locations": ['33910596-055b-41f1-8d93-9c790bac18bf', '188325cb-6d90-411a-ad02-33936878962a', '353edcc0-b9b5-4ea0-833c-ff46bcfd3f03', '25b8dd30-f445-4de2-86a6-c7f5ea5b2bd0', '592b5ff5-3409-4226-92fb-daf9fb9e81a1', '7bd36ff2-d46b-4d0b-a37f-47420ed48494', 'd41f9c93-7e74-4ac4-a28d-9cfbe710217c', '134674b5-ef5c-4898-82a0-f0a2eed19801', '50c08e8e-e9aa-4dab-951b-d796c6f7eb79', 'df304aab-85fe-4c51-a56f-f6b7ca2d9031', 'bf9f704f-58cb-40df-b884-d06567d1aece', 'dc41582b-4f95-4fea-88d3-e4748cb7e3b0', 'ea1a1444-e8f5-4aa4-8847-13fafce2d321', '7c486fb8-15a2-4771-8465-3c5f6e2d7f99', '89e530c7-cc79-4052-b272-774b1eacd7e0', '92abd866-c2a4-4f02-855d-022ee3e5e98b', '2d42b5c5-bfd7-4003-9559-4434dac77140', '3542bed6-4618-4726-a5e2-8ba6d7831d19', '741601c2-f0ad-44d8-aed7-f77323d92522'],
+        "id_variables": ["6de7b8f1-cc60-40aa-b919-7c884856d89b"],
+        "name_variables": ["Runoff"],
+        "runoff_thresholds": [[780,1150,1800,2250],[],[],[80,110,120,130],[],[40,100,170,280],[],[65,90,100,110],[300,520,640,770],[20,40,50,70],[75,100,110,120],[],[],[130,260,350,460],[170,280,350,440],[1300,1950,2450,3050],[],[],[360,610,750,890]],
+        "variable_units": ["m3/s"]
+    }
+]
 
 products_ids_nwp_pred = ["354da43c-9106-484f-abe3-c842ca7a082a", "0411ead6-7ca6-4f82-9dc6-8fc29a0b1033", "6a40a112-64bc-4852-9076-208aa14bf3d9"]
 names_nwp_pred = ['ICON-CH1-EPS','ICON-CH2-EPS','IFS']
@@ -266,6 +276,7 @@ if not st.session_state.logged_in:
             st.rerun()
 
     st.stop()  # Stop app here if not logged in
+
 
 st.sidebar.title("Select Date and Time")
 
