@@ -1,1 +1,10 @@
 streamlit
+xarray
+requests
+netCDF4
+matplotlib
+pandas
+numpy
+datetime
+requests
+json
